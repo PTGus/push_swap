@@ -6,13 +6,13 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:19:00 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:41:26 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:25:45 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/** @brief Moves n bytes of memory area of src to the memory area of dest.
- *  Handles overlapping.
+/** @brief Moves n bytes of memory area of src to
+ *  the memory area of dest. Can handle overlapping.
  *  @param dest - destiny memory area
  *  @param src - source memory area
  *  @param n - len of bytes

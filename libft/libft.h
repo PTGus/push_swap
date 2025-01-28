@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:29:22 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/07 16:25:00 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:30:31 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 # include <stdlib.h>
 # include <stddef.h>
 
-typedef struct s_block t_block;
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 /* libft main */
 int		ft_isalpha(int c);
@@ -61,14 +65,14 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 /* bonus */
-t_block	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_block **lst, t_block *new);
-int		ft_lstsize(t_block *lst);
-t_block	*ft_lstlast(t_block *lst);
-void	ft_lstadd_back(t_block **lst, t_block *new);
-void	ft_lstdelone(t_block *lst, void (*del)(void *));
-void	ft_lstclear(t_block **lst, void (*del)(void *));
-void	ft_lstiter(t_block *lst, void (*f)(void *));
-t_block	*ft_lstmap(t_block *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

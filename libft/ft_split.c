@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:19:41 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/31 11:09:29 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:19:38 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static int	word_count(const char *str, char c)
 }
 
 /** @brief Frees all the unused memory in the array of words
- * and the array itself.
- * 	@param strs  array of words
+ * 	@param strs - array of words
 */
 static void	*ft_free(char **strs, int count)
 {

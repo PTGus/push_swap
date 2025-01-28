@@ -6,13 +6,13 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 10:57:19 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/06 15:54:57 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:18:30 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 /** @brief Converts ASCII string to integer
- *  @param str  string to convert
+ *  @param str - string to convert
  *  @return Returns the integer representation of the string
 */
 int	ft_atoi(const char *str)

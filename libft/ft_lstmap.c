@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 11:19:00 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/07 13:10:30 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:24:43 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
  * 	@param del - function that can delete an element's content
  *  @return Returns a list
 */
-t_block	*ft_lstmap(t_block *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_block	*new_lst;
-	t_block	*new_obj;
+	t_list	*new_lst;
+	t_list	*new_obj;
 	void	*cont;
 
 	if (!lst || !f || !del)

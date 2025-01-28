@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 11:12:10 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/07 13:10:30 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:22:44 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  *  @param lst - list
  * 	@param f - function to apply
 */
-void	ft_lstiter(t_block *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	while (lst)
 	{

@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lst_manip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 12:41:46 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/23 13:50:31 by gumendes         ###   ########.fr       */
+/*   Created: 2025/01/20 11:48:50 by gumendes          #+#    #+#             */
+/*   Updated: 2025/01/22 17:42:42 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strrchr(const char *str, int c)
+/**
+ * @brief Iterates through the entire stack untill the last node is reached.
+ * @return The pointer to the last node/tail.
+ */
+t_stack	*ft_lst_last(t_stack *lst)
 {
-	int		i;
-	int		len;
-	char	d;
-
-	d = (char) c;
-	len = ft_strlen(str);
-	i = len - 1;
-	while (i >= 0)
-	{
-		if (str[i] == d)
-			return ((char *) &str[i]);
-		i--;
-	}
-	if (d == '\0')
-		return ((char *) &str[len]);
-	return (NULL);
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

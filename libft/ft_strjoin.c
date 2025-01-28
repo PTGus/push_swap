@@ -6,16 +6,12 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:06:20 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:34:15 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/26 09:56:39 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/** @brief Concatenates two strings into a new one
- * 	@param s1 - string one
- * 	@param s2 - string two
- *  @return Returns the new string
-*/
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;

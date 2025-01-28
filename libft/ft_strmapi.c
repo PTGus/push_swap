@@ -6,16 +6,12 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:44:41 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:35:01 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/26 10:18:32 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/** @brief Apllies a function to each character of a string
- * 	@param s - string
- * 	@param f - function
- *  @return Returns the string
-*/
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;

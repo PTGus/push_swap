@@ -6,13 +6,13 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:16:16 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/07 16:20:14 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:23:58 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_intlen(long nbr)
+int	ft_intlen(long nbr)
 {
 	int		count;
 

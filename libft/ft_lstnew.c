@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 14:44:42 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/07 13:10:30 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:23:15 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
  *  @param content - content for the new element
  *  @return returns the new list
 */
-t_block	*ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
-	t_block	*new_node;
+	t_list	*new_node;
 
-	new_node = malloc(sizeof(t_block));
+	new_node = malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
 	new_node->content = content;

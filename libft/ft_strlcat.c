@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:35:08 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:34:28 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:24:16 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ char	*concat(char *dst, const char *src, size_t size)
 	return (dst);
 }
 
-/** @brief Concatenates strings size-bounded
- *  @param dst - destiny string
- *  @param src - source string
- *  @param size - size of string src you want to concatenate
- *  @return returns the length of src plus the length of the final dst
-*/
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	dst_len;

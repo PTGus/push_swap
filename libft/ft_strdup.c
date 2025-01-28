@@ -6,15 +6,12 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:25:26 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:33:50 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:44:57 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/** @brief Allocates memory to save a copy of a string
- * 	@param s - string to copy
- *  @return Returns a pointer to the copy
-*/
+
 char	*ft_strdup(const char *src)
 {
 	char	*dest;

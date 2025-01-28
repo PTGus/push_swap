@@ -6,18 +6,12 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:14:54 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:41:49 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:50:45 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/** @brief Compares n characters between two strings
- * 	@param s1 - string one
- *  @param s2 - string two
- * 	@param n - number of characters to compare
- *  @return Returns the difference between the
- * different characters of both strings.
-*/
+
 int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
 	size_t	i;

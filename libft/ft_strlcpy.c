@@ -6,17 +6,12 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:57:22 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:34:41 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:18:09 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/** @brief Copies a size of the string src to the string dst
- *  @param dst - destiny string
- *  @param src - source string
- *  @param size - size of string src you want to copy
- *  @return returns the length of src
-*/
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	len;

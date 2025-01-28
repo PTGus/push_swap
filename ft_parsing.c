@@ -6,42 +6,17 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:26:48 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/07 16:15:18 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:25:37 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_atol(const char *str)
-{
-	long	i;
-	long	sign;
-	long	sum;
-
-	sign = 1;
-	i = 0;
-	sum = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
-		sum = (sum * 10) + (str[i] - '0');
-		i++;
-	}
-	return (sign * sum);
-}
-
 /** @brief Gets last element of the list
  *  @param lst  list
  * 	@return Returns the last element of the list
 */
-t_block	*lstlast(t_block *lst)
+t_stack	*lstlast(t_stack *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -52,15 +27,18 @@ t_block	*lstlast(t_block *lst)
 
 /**
  * @brief Creates a new node with the given value.
+ * @param nbr The value that this new node will assume.
+ * @return The new node.
  */
-t_block	*new_node(int nbr)
+t_stack	*new_node(int nbr)
 {
-	t_block	*new;
+	t_stack	*new;
 
-	new = malloc(sizeof(t_block));
+	new = malloc(sizeof(t_stack));
 	if (!new)
 		return (NULL);
 	new->value = nbr;
+	new->index = 0;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
@@ -69,45 +47,49 @@ t_block	*new_node(int nbr)
 /**
  * @brief Adds a node to the end of the list, updates the head if necessary.
  */
-t_block	*ft_lst_back(t_block *block, t_block *curr)
+void	ft_lst_back(t_stack **a, t_stack **curr)
 {
-	t_block *last;
+	t_stack	*last;
 
-	if (!block)
+	if (!*a)
 	{
-		block = curr;
-		return (block);
+		*a = *curr;
+		return ;
 	}
-	last = lstlast(block);
-	last->next = curr;
-	curr->prev = last;
-	return (block);
+	last = lstlast(*a);
+	last->next = *curr;
+	(*curr)->prev = last;
+	return ;
 }
 
 /**
  * @brief Parses arguments and builds the linked list
  */
-int	parse_args_str(char **argv, t_block *block)
+int	parse_args_str(char **argv, t_stack **a)
 {
 	int		i;
-	t_block	*curr;
+	t_stack	*curr;
 	char	**split;
 
 	if (!argv[1])
-		return (1);
+		return (0);
 	split = ft_split(argv[1], ' ');
 	if (!split)
-		return (1);
-	i = 0;
-	while (split[i])
+		return (0);
+	i = -1;
+	while (split[++i])
 	{
 		if (ft_strlen(split[i]) > 11)
-			return (1);
+			return (0);
+		if (!is_valid(split[i]))
+			return (0);
 		curr = new_node(ft_atol(split[i]));
-		if (!curr)
-			return (1);
-		ft_lst_back(block, curr);
-		i++;
+		if (curr == NULL)
+			return (0);
+		ft_lst_back(a, &curr);
 	}
-	return (0);
+	ft_free_split(split);
+	if (!stack_is_valid(a))
+		return (0);
+	return (1);
 }

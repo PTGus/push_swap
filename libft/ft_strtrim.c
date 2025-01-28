@@ -6,16 +6,12 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:31:33 by gumendes          #+#    #+#             */
-/*   Updated: 2024/10/29 16:36:35 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:16:11 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/** @brief Checks if current character has to be trimmed
- * 	@param set - character set
- * 	@param c - string character
- *  @return Returns 1 it is to be trimmed and 0 if it isn't to be
-*/
+
 int	to_trim(char *set, char c)
 {
 	int	i;
@@ -52,11 +48,6 @@ char	*new_str(const char *s1, int start, int end)
 	return (str);
 }
 
-/** @brief Trims a character set from the string
- * 	@param set - string
- * 	@param c - character set
- *  @return Returns trimmed string
-*/
 char	*ft_strtrim(const char *s1, const char *set)
 {
 	int		start;

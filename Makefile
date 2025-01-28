@@ -6,62 +6,110 @@
 #    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:23:37 by gumendes          #+#    #+#              #
-#    Updated: 2025/01/07 15:56:07 by gumendes         ###   ########.fr        #
+#    Updated: 2025/01/27 10:40:25 by gumendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Flags
-CC			=	cc
-RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror -g
+#==============================================================================#
+#                                 Files and Paths                              #
+#==============================================================================#
 
-# Library Paths
-LIBFT_PATH		=	libft
-PRINTF_PATH		=	printf
+SRCS = ft_clear.c ft_lst_manip.c ft_parsing.c ft_parsing2.c ft_push.c ft_rev_rotate.c ft_rotate.c ft_sort_util.c \
+			 ft_sort.c ft_swap.c ft_utils.c main.c
 
-# Libraries
-LIBFT		=	$(LIBFT_PATH)/libft.a
-PRINTF		=	$(PRINTF_PATH)/libftprintf.a
+OBJS       = $(addprefix $(BUILD_PATH)/, $(SRCS:.c=.o))
 
-# Includes
-INCLUDES = -I$(LIBFT_PATH) -I$(PRINTF_PATH)
+NAME = push_swap
 
-# Name of Output File
-NAME		=	push_swap
+BUILD_PATH = .build
 
-# Source Files
-SRC			=	main.c ft_parsing.c ft_parsing2.c
+LIBFT_PATH = libft
 
-# Object Files
-OBJ			=	$(SRC:.c=.o)
+LIBFT_ARC  = $(LIBFT_PATH)/libft.a
 
-# Targets
-all: $(LIBFT) $(PRINTF) $(NAME)
+#==============================================================================#
+#                                   Alias                                      #
+#==============================================================================#
 
-# Build the libft library
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_PATH)
+CC      = cc
+AR      = ar rcs
+RM      = rm -rf
+CFLAGS  = -g -Wall -Werror -Wextra
 
-# Build the printf library
-$(PRINTF):
-	$(MAKE) -C $(PRINTF_PATH)
+#==============================================================================#
+#                                    Rules                                     #
+#==============================================================================#
 
-# Build the push_swap program
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(PRINTF) $(INCLUDES)
+all: $(NAME)
 
-# Clean object files
+$(BUILD_PATH):
+	@mkdir $(BUILD_PATH)
+
+$(NAME): check $(BUILD_PATH) $(OBJS) $(LIBFT_ARC)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
+	@echo "$(GRN)[push_swap created!]$(D)"
+
+$(BUILD_PATH)/%.o: %.c | $(BUILD_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFT_ARC):
+	@$(MAKE) -C $(LIBFT_PATH)
+
+$(LIB_NAME): $(BUILD_PATH) $(OBJS)
+	@$(AR) $(LIB_NAME) $(OBJS)
+
+check:	## Download/Update libft
+	@if test ! -d "$(LIBFT_PATH)"; then make -s get_libft; \
+		else echo "$(GRN)[Libft folder found]$(D)"; fi
+
+get_libft:
+	@echo "[$(CYA)Downloading Libft$(D)]"
+	git clone git@github.com:PTGus/libft.git $(LIBFT_PATH)
+	@echo "$(CYA)[Libft successfully downloaded]$(D)"
+
+
 clean:
-	$(RM) $(OBJ)
-	$(MAKE) -C $(LIBFT_PATH) clean
-	$(MAKE) -C $(PRINTF_PATH) clean
+	@$(RM) $(BUILD_PATH)
+	@$(MAKE) clean -C $(LIBFT_PATH)
+	@echo "$(BCYA)[clean] push_swap Objects removed$(D)"
 
-# Full clean
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) -C $(LIBFT_PATH) fclean
-	$(MAKE) -C $(PRINTF_PATH) fclean
+	@$(RM) $(NAME)
+	@$(MAKE) fclean -C $(LIBFT_PATH)
+	@echo "$(BCYA)[fclean] push_swap Executable and Libft removed$(D)"
 
 re: fclean all
+
+re: fclean all
+
+#==============================================================================#
+#                                  UTILS                                       #
+#==============================================================================#
+
+# Colors
+#
+# Run the following command to get list of available colors
+# bash -c 'for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done'
+#
+B  		= $(shell tput bold)
+BLA		= $(shell tput setaf 0)
+RED		= $(shell tput setaf 1)
+GRN		= $(shell tput setaf 2)
+YEL		= $(shell tput setaf 3)
+BLU		= $(shell tput setaf 4)
+MAG		= $(shell tput setaf 5)
+CYA		= $(shell tput setaf 6)
+WHI		= $(shell tput setaf 7)
+GRE		= $(shell tput setaf 8)
+BRED 	= $(shell tput setaf 9)
+BGRN	= $(shell tput setaf 10)
+BYEL	= $(shell tput setaf 11)
+BBLU	= $(shell tput setaf 12)
+BMAG	= $(shell tput setaf 13)
+BCYA	= $(shell tput setaf 14)
+BWHI	= $(shell tput setaf 15)
+D 		= $(shell tput sgr0)
+BEL 	= $(shell tput bel)
+CLR 	= $(shell tput el 1)
 
 .PHONY: all clean fclean re
