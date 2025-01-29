@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:54:25 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/27 10:30:20 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:30:55 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdio.h>
+# include <unistd.h>
 # include <limits.h>
 # include "libft/libft.h"
 
@@ -30,20 +31,23 @@ typedef struct s_stack
 void	ft_clear_stack(t_stack **stack);
 void	ft_node_del(void *content);
 void	ft_free_split(char **split);
+void	single_dig(t_stack **stack_a, t_stack **stack_b);
 
 // ft_lst_manip //
 t_stack	*ft_lst_last(t_stack *lst);
 
 // ft_parsing/2 //
-int		parse_args_str(char **argv, t_stack **a);
+int		parse_args_str(char **argv);
 t_stack	*lstlast(t_stack *lst);
 long	ft_atol(const char *str);
 t_stack	*new_node(int nbr);
-void	ft_lst_back(t_stack **a, t_stack **curr);
-int		parse_args(char **argv, t_stack **a);
+void	ft_lst_back(t_stack **stack_a, t_stack *curr);
+int		parse_args(char **argv);
 int		has_letter(char *str);
 void	indexer(t_stack **stack_a);
 int		stack_is_valid(t_stack **stack);
+int		valid_args(int argc, char **argv);
+int		create_new(t_stack **stack, char **arg, int start);
 
 // ft_push //
 void	push(t_stack **src, t_stack **dst);
@@ -74,18 +78,22 @@ void	sort_three(t_stack **stack_a);
 void	sort_five(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 
-// ft_utils //
+// ft_utils/2 //
 void	free_stack(t_stack **stack);
-void	ft_free(t_stack **stack_a, t_stack **stack_b);
 void	ft_error(t_stack **stack_a, t_stack **stack_b);
 int		is_valid(char *str);
+int		arr_len(char **arr);
+int		is_single_number(int argc, char **argv);
 
 // ft_sort_util //
 int		biggest_num(t_stack **stack_a);
 int		maximum_bits(int num);
 int		sorted(t_stack **stack_a);
+int		ft_stack_size(t_stack **stack);
 
 // main //
-int		init_stack(t_stack **stack, int argc, char **argv);
+int		mal_check(t_stack ***stack_a, t_stack ***stack_b);
+int		ft_init(int argc, char **argv, t_stack ***stack_a, t_stack ***stack_b);
+int		fill_stack(char **args, t_stack **stack, int type);
 
 #endif

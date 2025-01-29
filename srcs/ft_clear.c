@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:09:23 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/23 14:26:50 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:50:39 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_clear_stack(t_stack **stack)
 		ft_node_del(*stack);
 		*stack = temp;
 	}
-	*stack = NULL;
 	free(stack);
 }
 
@@ -54,4 +53,11 @@ void	ft_free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+void	single_dig(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_clear_stack(stack_a);
+	ft_clear_stack(stack_b);
+	exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:20:50 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/22 17:51:40 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:49:04 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,21 @@ void	sorter(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
 
-	size = biggest_num(stack_a);
-	if (!sorted(stack_a) && size <= 3)
+	size = ft_stack_size(stack_a);
+	if (size == 1)
+	{
+		ft_clear_stack(stack_a);
+		ft_clear_stack(stack_b);
+		exit (1);
+	}
+	else if (!sorted(stack_a) && size <= 3)
 		sort_three(stack_a);
 	else if (!sorted(stack_a) && size <= 5)
 		sort_five(stack_a, stack_b);
 	else if (!sorted(stack_a))
 		radix_sort(stack_a, stack_b);
-	else
-		ft_error(stack_a, stack_b);
+	else if (sorted(stack_a) == 1)
+		return ;
 }
 
 /**
@@ -57,7 +63,7 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
 
-	size = biggest_num(stack_a);
+	size = ft_stack_size(stack_a);
 	while (size--)
 	{
 		if ((*stack_a)->index == 0 || (*stack_a)->index == 1)
@@ -84,13 +90,14 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 
 	biggest = biggest_num(stack_a);
 	max_bits = maximum_bits(biggest);
+	biggest = ft_stack_size(stack_a);
 	i = 0;
 	while (i < max_bits)
 	{
 		j = 0;
 		while (j < biggest)
 		{
-			if (((*stack_a)->index >> i) & 1)
+			if ((((*stack_a)->index >> i) & 1))
 				ra(stack_a);
 			else
 				pb(stack_a, stack_b);

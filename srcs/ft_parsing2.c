@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:55:50 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/27 09:53:52 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:00:24 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	stack_is_valid(t_stack **stack)
 	t_stack	*curr;
 	t_stack	*tmp;
 
+	tmp = NULL;
 	curr = *stack;
 	while (curr != NULL)
 	{
@@ -30,8 +31,6 @@ int	stack_is_valid(t_stack **stack)
 				return (0);
 			tmp = tmp->next;
 		}
-		if (curr->value > INT_MAX || curr->value < INT_MIN)
-			return (0);
 		curr = curr->next;
 	}
 	return (1);
@@ -41,32 +40,25 @@ int	stack_is_valid(t_stack **stack)
  * @brief Parses arguments when they are not passed
  *  as a single string and builds the linked list.
  */
-int	parse_args(char **argv, t_stack **a)
+int	create_new(t_stack **stack, char **arg, int start)
 {
-	size_t	i;
 	t_stack	*curr;
 
-	i = 1;
-	while (argv[i])
+	while (arg[start])
 	{
-		if (ft_strlen(argv[i]) > 11)
-			return (0);
-		if (!is_valid(argv[i]))
-			return (0);
-		curr = new_node(ft_atol(argv[i]));
+		curr = NULL;
+		curr = new_node(ft_atol(arg[start]));
 		if (!curr)
 			return (0);
-		ft_lst_back(a, &curr);
-		i++;
+		ft_lst_back(stack, curr);
+		start++;
 	}
-	if (!stack_is_valid(a))
-		return (0);
 	return (1);
 }
 
 /**
  * @brief Iterates through all the members of
- *  stack_a and index thems from lowest value to highest.
+ *  stack a and index thems from lowest value to highest.
  */
 void	indexer(t_stack **stack_a)
 {
@@ -74,14 +66,14 @@ void	indexer(t_stack **stack_a)
 	t_stack	*smallest;
 	int		index;
 
-	index = 1;
+	index = 0;
 	while (1)
 	{
 		tmp = *stack_a;
 		smallest = NULL;
 		while (tmp)
 		{
-			if (tmp->index == 0 && (!smallest || tmp->value < smallest->value))
+			if (tmp->index == -1 && (!smallest || tmp->value < smallest->value))
 				smallest = tmp;
 			tmp = tmp->next;
 		}
@@ -117,4 +109,21 @@ int	is_out_of_int_range(const char *str)
 	if (str[i] != '\0')
 		return (1);
 	return (0);
+}
+
+int	valid_args(int argc, char **argv)
+{
+	if (is_single_number(argc, argv))
+		return (0);
+	if (argc == 2)
+	{
+		if (!parse_args_str(argv))
+			return (0);
+	}
+	else if (argc >= 3)
+	{
+		if (!parse_args(argv))
+			return (0);
+	}
+	return (1);
 }

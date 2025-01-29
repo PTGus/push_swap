@@ -5,111 +5,58 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/19 15:23:37 by gumendes          #+#    #+#              #
-#    Updated: 2025/01/27 10:40:25 by gumendes         ###   ########.fr        #
+#    Created: 2025/01/29 16:22:42 by gumendes          #+#    #+#              #
+#    Updated: 2025/01/29 16:54:33 by gumendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#==============================================================================#
-#                                 Files and Paths                              #
-#==============================================================================#
+SRC_PATH = srcs
+BUILD_PATH = .build
 
-SRCS = ft_clear.c ft_lst_manip.c ft_parsing.c ft_parsing2.c ft_push.c ft_rev_rotate.c ft_rotate.c ft_sort_util.c \
-			 ft_sort.c ft_swap.c ft_utils.c main.c
+# Source files with their full path (from srcs folder)
+SRCS = $(SRC_PATH)/ft_clear.c $(SRC_PATH)/ft_lst_manip.c $(SRC_PATH)/ft_parsing.c $(SRC_PATH)/ft_parsing2.c $(SRC_PATH)/ft_push.c \
+       $(SRC_PATH)/ft_rev_rotate.c $(SRC_PATH)/ft_rotate.c $(SRC_PATH)/ft_sort_util.c $(SRC_PATH)/ft_sort.c $(SRC_PATH)/ft_swap.c \
+       $(SRC_PATH)/ft_utils.c $(SRC_PATH)/ft_utils2.c $(SRC_PATH)/main.c
 
-OBJS       = $(addprefix $(BUILD_PATH)/, $(SRCS:.c=.o))
+# Object files directly in the .build folder (without any additional path)
+OBJS = $(SRCS:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 
 NAME = push_swap
 
-BUILD_PATH = .build
+CC = cc
+CFLAGS = -g -Wall -Werror -Wextra -I.
+RM = rm -rf
+AR = ar rcs
 
 LIBFT_PATH = libft
+LIBFT_ARC = $(LIBFT_PATH)/libft.a
 
-LIBFT_ARC  = $(LIBFT_PATH)/libft.a
-
-#==============================================================================#
-#                                   Alias                                      #
-#==============================================================================#
-
-CC      = cc
-AR      = ar rcs
-RM      = rm -rf
-CFLAGS  = -g -Wall -Werror -Wextra
-
-#==============================================================================#
-#                                    Rules                                     #
-#==============================================================================#
-
+# Default rule to build the project
 all: $(NAME)
 
-$(BUILD_PATH):
-	@mkdir $(BUILD_PATH)
+$(NAME): $(OBJS) $(LIBFT_ARC)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
 
-$(NAME): check $(BUILD_PATH) $(OBJS) $(LIBFT_ARC)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
-	@echo "$(GRN)[push_swap created!]$(D)"
+# Rule to create object files in the .build folder
+$(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir -p $(BUILD_PATH)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_PATH)/%.o: %.c | $(BUILD_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
+# Libft rule
 $(LIBFT_ARC):
 	@$(MAKE) -C $(LIBFT_PATH)
 
-$(LIB_NAME): $(BUILD_PATH) $(OBJS)
-	@$(AR) $(LIB_NAME) $(OBJS)
-
-check:	## Download/Update libft
-	@if test ! -d "$(LIBFT_PATH)"; then make -s get_libft; \
-		else echo "$(GRN)[Libft folder found]$(D)"; fi
-
-get_libft:
-	@echo "[$(CYA)Downloading Libft$(D)]"
-	git clone git@github.com:PTGus/libft.git $(LIBFT_PATH)
-	@echo "$(CYA)[Libft successfully downloaded]$(D)"
-
-
+# Clean object files
 clean:
-	@$(RM) $(BUILD_PATH)
+	$(RM) $(BUILD_PATH)
 	@$(MAKE) clean -C $(LIBFT_PATH)
-	@echo "$(BCYA)[clean] push_swap Objects removed$(D)"
 
+# Clean everything
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 	@$(MAKE) fclean -C $(LIBFT_PATH)
-	@echo "$(BCYA)[fclean] push_swap Executable and Libft removed$(D)"
 
+# Rebuild everything
 re: fclean all
-
-re: fclean all
-
-#==============================================================================#
-#                                  UTILS                                       #
-#==============================================================================#
-
-# Colors
-#
-# Run the following command to get list of available colors
-# bash -c 'for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done'
-#
-B  		= $(shell tput bold)
-BLA		= $(shell tput setaf 0)
-RED		= $(shell tput setaf 1)
-GRN		= $(shell tput setaf 2)
-YEL		= $(shell tput setaf 3)
-BLU		= $(shell tput setaf 4)
-MAG		= $(shell tput setaf 5)
-CYA		= $(shell tput setaf 6)
-WHI		= $(shell tput setaf 7)
-GRE		= $(shell tput setaf 8)
-BRED 	= $(shell tput setaf 9)
-BGRN	= $(shell tput setaf 10)
-BYEL	= $(shell tput setaf 11)
-BBLU	= $(shell tput setaf 12)
-BMAG	= $(shell tput setaf 13)
-BCYA	= $(shell tput setaf 14)
-BWHI	= $(shell tput setaf 15)
-D 		= $(shell tput sgr0)
-BEL 	= $(shell tput bel)
-CLR 	= $(shell tput el 1)
 
 .PHONY: all clean fclean re

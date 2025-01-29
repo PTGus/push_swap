@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:26:48 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/23 14:25:37 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:30:38 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_stack	*new_node(int nbr)
 	if (!new)
 		return (NULL);
 	new->value = nbr;
-	new->index = 0;
+	new->index = -1;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
@@ -47,28 +47,28 @@ t_stack	*new_node(int nbr)
 /**
  * @brief Adds a node to the end of the list, updates the head if necessary.
  */
-void	ft_lst_back(t_stack **a, t_stack **curr)
+void	ft_lst_back(t_stack **stack_a, t_stack *curr)
 {
 	t_stack	*last;
 
-	if (!*a)
+	last = NULL;
+	if (!*stack_a)
 	{
-		*a = *curr;
+		*stack_a = curr;
 		return ;
 	}
-	last = lstlast(*a);
-	last->next = *curr;
-	(*curr)->prev = last;
+	last = lstlast(*stack_a);
+	last->next = curr;
+	curr->prev = last;
 	return ;
 }
 
 /**
  * @brief Parses arguments and builds the linked list
  */
-int	parse_args_str(char **argv, t_stack **a)
+int	parse_args_str(char **argv)
 {
 	int		i;
-	t_stack	*curr;
 	char	**split;
 
 	if (!argv[1])
@@ -76,20 +76,32 @@ int	parse_args_str(char **argv, t_stack **a)
 	split = ft_split(argv[1], ' ');
 	if (!split)
 		return (0);
-	i = -1;
-	while (split[++i])
+	i = 0;
+	while (split[i])
 	{
-		if (ft_strlen(split[i]) > 11)
-			return (0);
 		if (!is_valid(split[i]))
+		{
+			ft_free_split(split);
 			return (0);
-		curr = new_node(ft_atol(split[i]));
-		if (curr == NULL)
-			return (0);
-		ft_lst_back(a, &curr);
+		}
+		i++;
 	}
 	ft_free_split(split);
-	if (!stack_is_valid(a))
+	return (1);
+}
+
+int	parse_args(char **argv)
+{
+	size_t	i;
+
+	i = 1;
+	if (!argv[1])
 		return (0);
+	while (argv[i])
+	{
+		if (!is_valid(argv[i]))
+			return (0);
+		i++;
+	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:40:11 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/22 17:42:42 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:04:37 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	biggest_num(t_stack **stack_a)
 	int		biggest;
 	t_stack	*tmp;
 
-	biggest = 1;
+	biggest = 0;
 	tmp = (*stack_a);
 	while (tmp)
 	{
@@ -67,4 +67,23 @@ int	sorted(t_stack **stack_a)
 		tmp = tmp->next;
 	}
 	return (1);
+}
+
+/**
+ * @brief Checks how many nodes a linked list has.
+ * @return The number of nodes the linked list has.
+ */
+int	ft_stack_size(t_stack **stack)
+{
+	int		count;
+	t_stack	*tmp;
+
+	tmp = *stack;
+	count = 0;
+	while (tmp != NULL)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	return (count);
 }

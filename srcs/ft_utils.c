@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:27:24 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/23 10:44:53 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:05:29 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,14 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	ft_free(t_stack **stack_a, t_stack **stack_b)
-{
-	if (stack_a == NULL || *stack_a != NULL)
-		free_stack(stack_a);
-	if (stack_b == NULL || *stack_b != NULL)
-		free_stack(stack_b);
-}
-
 /**
- * @brief Frees everything on program error.
+ * @brief Frees everything on program error
+ *  and writes "Error" on std error.
  */
 void	ft_error(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_free(stack_a, stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
 	write(2, "Error\n", 6);
 	exit (1);
 }
@@ -56,9 +50,11 @@ int	is_valid(char *str)
 {
 	size_t	i;
 
-	i = 0;
 	if (!str)
 		return (0);
+	if (ft_strlen(str) > 11)
+		return (0);
+	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (!str[i])
@@ -101,4 +97,19 @@ long	ft_atol(const char *str)
 		i++;
 	}
 	return (sign * sum);
+}
+
+/**
+ * @brief Discovers the length of an array and returns it.
+ * @param arr The array.
+ * @return The length of the array.
+ */
+int	arr_len(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
