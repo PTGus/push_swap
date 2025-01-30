@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:23:31 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/29 16:01:12 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:09:35 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ int	main(int argc, char **argv)
 	}
 	if (!ft_init(argc, argv, &stack_a, &stack_b))
 		return (0);
+	if (has_duplicates(stack_a))
+	{
+		write(2, "Error\n", 6);
+		ft_clear_stack(stack_a);
+		ft_clear_stack(stack_b);
+		return (0);
+	}
 	indexer(stack_a);
 	sorter(stack_a, stack_b);
 	ft_clear_stack(stack_a);

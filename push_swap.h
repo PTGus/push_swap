@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:54:25 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/29 15:30:55 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:09:36 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	ft_error(t_stack **stack_a, t_stack **stack_b);
 int		is_valid(char *str);
 int		arr_len(char **arr);
 int		is_single_number(int argc, char **argv);
+int		has_duplicates(t_stack **stack_a);
 
 // ft_sort_util //
 int		biggest_num(t_stack **stack_a);

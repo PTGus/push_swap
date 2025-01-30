@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:55:50 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/29 17:00:24 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:00:15 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,33 +84,9 @@ void	indexer(t_stack **stack_a)
 	}
 }
 
-int	is_out_of_int_range(const char *str)
-{
-	long	result;
-	int		sign;
-	int		i;
-
-	result = 0;
-	sign = 1;
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + (str[i] - '0');
-		if ((sign * result) > INT_MAX || (sign * result) < INT_MIN)
-			return (1);
-		i++;
-	}
-	if (str[i] != '\0')
-		return (1);
-	return (0);
-}
-
+/**
+ * @brief Checks wether the given arguments are valid.
+ */
 int	valid_args(int argc, char **argv)
 {
 	if (is_single_number(argc, argv))
