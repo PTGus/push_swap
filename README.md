@@ -1,9 +1,6 @@
 ## push_swap
  Because Swap_push isn’t as natural.
 
-Summary:
+## Summary:
 
-In this project i will make a program that sorts data on a stack, with a limited set of instructions, using
-the lowest possible number of actions. To succeed i’ll have to manipulate various
-types of algorithms and choose the most appropriate solution (out of many) for an
-optimized data sorting.
+Push_swap is a number-sorting algorithm that efficiently sorts a stack using a limited set of operations. This project, built as part of the 42 School curriculum, implements various sorting techniques, including the Radix Sort algorithm for larger data sets, ensuring optimal performance.
