@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:32 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/30 16:09:36 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:45:36 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,18 @@ int	has_duplicates(t_stack **stack_a)
 		current = current->next;
 	}
 	return (0);
+}
+
+int	is_inside_range(char *nbr)
+{
+	long	max_int;
+	long	min_int;
+	long	number;
+
+	max_int = 2147483647;
+	min_int = -2147483648;
+	number = ft_atol(nbr);
+	if ((number < min_int) || (number > max_int))
+		return (0);
+	return (1);
 }

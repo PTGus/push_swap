@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:27:24 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/29 15:05:29 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:46:20 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	is_valid(char *str)
 		return (0);
 	if (ft_strlen(str) > 11)
 		return (0);
+	if (!is_inside_range(str))
+		return (0);
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
@@ -72,7 +74,7 @@ int	is_valid(char *str)
  * @brief Transform the members of a string
  *  from their ascii values into numbers.
  * @param str The string to be converted.
- * @return Number represented in paramates as a long variable.
+ * @return Number represented in paramaters as a long variable.
  */
 long	ft_atol(const char *str)
 {
